@@ -1,0 +1,241 @@
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.logos{
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.usp-logo{
+    width: 122px;
+    padding-top: 5px;
+    margin-right: 24px;
+    margin-left: 28px;
+}
+
+.usp-logo-texto{
+    padding-top: 8px;
+    width: 260px;
+}
+
+.faixas{
+    margin-top: 3px;
+}
+
+.faixa-laranja{
+    display: block;
+    height: 6px;
+    width: 100%;
+    background-color: #fcb421;
+}
+
+.faixa-azul-claro{
+    display: block;
+    height: 6px;
+    width: 100%;
+    background-color: #64c4d2;
+}
+
+.faixa-azul-escuro{
+    display: block;
+    height: 12px;
+    width: 100%;
+    background-color: #1094ab;
+}
+
+.conteudo{
+    gap: 20px;
+    padding: 10px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.caixa-navegacao{
+    width: 100%;
+    max-width: 250px;
+}
+
+.navegacao-publico{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    width: 100%;
+    max-width: 170px;
+    height: 152px;
+    list-style-type: none;
+    border: 1px solid #cccccc;
+}
+
+.navegacao-restrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    width: 100%;
+    max-width: 170px;
+    height: 102px;
+    list-style-type: none;
+    border: 1px solid #cccccc;
+}
+
+.menu-header{
+    background-color: #cccccc;
+}
+
+.area-login{
+    flex: 1;
+    min-width: 250px;
+    width: 100%;
+}
+
+.login-header{
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.linha-horizontal{
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.login{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.usuario{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 40px;
+}
+
+.senha{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 40px;
+}
+
+.usuario-texto,
+.senha-texto{
+    display: inline-block;
+    width: 67px;
+
+}
+
+.form-usuario,
+.form-senha{
+    display: inline-block;
+    flex: 1;
+}
+
+.usuario-input,
+.senha-input{
+    width: 100%;
+    display: inline-block;
+}
+
+.botao-entrar{
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+}
+
+.fundo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-adicional{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    justify-self: center;
+    align-self: center;
+}
+
+.empresa{
+    margin-top: 0px;
+    justify-self: center;
+    align-self: center;
+}
+
+@media (max-width: 768px) {
+    .navegacao-publico,
+    .navegacao-restrito{
+        max-width: 100%;
+    }
+
+    .conteudo{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .area-login{
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .login{
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .usuario{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .senha{
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .usuario-texto,
+    .senha-texto{
+        display: block;
+        margin: 10px 0px 0px 0;
+    }
+
+    .form-usuario,
+    .form-senha{
+        width: 30%;
+    }
+
+    .botao-entrar{
+        margin-top: 5px;
+        width: 30%;
+        align-self: auto;
+    }
+
+    .fundo{
+        width: 50%;
+        justify-self: auto;
+        align-self: auto;
+    }
+}
