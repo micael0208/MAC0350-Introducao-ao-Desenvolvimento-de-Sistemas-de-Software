@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa de Casa - JavaScript</title>
+
+</head>
+<body>
+
+    <button onclick="alternarLuz()" type="button">Interruptor</button>
+    <h1 id="texto-luz">A luz está APAGADA</h1>
+    <h1 id="visor-multiplicador">2</h1>
+    <button onclick="multiplicador()" type="button">Dobrar</button>
+
+<script>
+    function alternarLuz() {
+        const cabecalho = document.querySelector('#texto-luz');
+        if (cabecalho.innerHTML === 'A luz está APAGADA') {
+            cabecalho.innerHTML = 'A luz está ACESA';
+        }
+        else {
+            cabecalho.innerHTML = 'A luz está APAGADA';
+        }
+    }
+
+    let valor = 2;
+    function multiplicador() {
+        valor = valor * 2;
+        document.querySelector('#visor-multiplicador').innerHTML = valor;
+        if (valor > 100) {
+            alert(`Cuidado, o número ${valor} está ficando muito grande!`)
+        }
+    }
+
+</script>
+
+</body>
+</html>
