@@ -1,0 +1,24 @@
+<!-- caso_edit.html -->
+
+<div class="card" id="caso-{{ caso.id }}">
+
+    <strong>{{ caso.titulo }}</strong>
+
+    <form
+        hx-put="/casos/{{ caso.id }}/editar"
+        hx-target="#caso-{{ caso.id }}"
+        hx-swap="outerHTML"
+    >
+        <textarea name="descricao" required>{{ caso.descricao }}</textarea>
+
+        <button type="submit">Salvar</button>
+
+        <button 
+            type="button"
+            hx-get="/casos"
+            hx-target="#conteudo">
+            Cancelar
+        </button>
+    </form>
+
+</div>
