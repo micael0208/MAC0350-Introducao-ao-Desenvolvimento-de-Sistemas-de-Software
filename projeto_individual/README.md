@@ -131,22 +131,15 @@ Todas as intefaces são **responsivas para dispositivos desktop e mobile**.
 
 ---
 
-# Como executar o projeto
 
-### 1. Clone o repositório
-  git clone https://github.com/your-username/case-tracker.git
+## Como rodar
 
-### 2. Entre na pasta do projeto
-   cd case-tracker
+```bash
+pip install -r requirements.txt
+uvicorn main:app --reload
 
-### 3. Instale as dependências
-   pip install -r requirements.txt
-
-### 4. Execute a aplicação
-   uvicorn app.main:app --reload
-
-### 5. Abra no browser
-   http://127.0.0.1:8000
+### Abra no browser
+   http://127.0.0.1:8000/casos
 
 ---
 
