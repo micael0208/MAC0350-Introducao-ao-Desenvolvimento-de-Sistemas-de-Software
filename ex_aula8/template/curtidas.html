@@ -1,0 +1,20 @@
+<div>
+    <h2>Curtidas</h2>
+
+    <span id="contador">{{ curtidas }}</span>
+
+    <button 
+        hx-post="/curtir"
+        hx-target="#contador"
+        hx-swap="innerHTML">
+        Curtir!
+    </button>
+
+    <button 
+        hx-delete="/curtir"
+        hx-confirm="Tem certeza que deseja apagar todas as curtidas?"
+        hx-target="#contador"
+        hx-swap="innerHTML">
+        Resetar
+    </button>
+</div>
