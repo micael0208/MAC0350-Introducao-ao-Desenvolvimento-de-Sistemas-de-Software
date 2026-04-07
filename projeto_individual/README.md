@@ -138,8 +138,8 @@ Todas as intefaces são **responsivas para dispositivos desktop e mobile**.
 pip install -r requirements.txt
 uvicorn main:app --reload
 
-### Abra no browser
-   http://127.0.0.1:8000/casos
+Abra no browser
+-> http://127.0.0.1:8000/casos
 
 ---
 
