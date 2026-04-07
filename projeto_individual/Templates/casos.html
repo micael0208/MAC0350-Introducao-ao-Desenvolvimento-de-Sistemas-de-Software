@@ -1,0 +1,133 @@
+<!-- Arquivo casos.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Novo Caso</h2>
+
+<div class="card">
+<form 
+    hx-post="/casos"
+    hx-target="#lista-casos"
+    hx-swap="beforeend"
+    hx-on="htmx:afterRequest: this.reset()"
+>
+    <input name="titulo" placeholder="Título" required>
+    <input name="descricao" placeholder="Descrição" required>
+
+    <select name="status">
+        <option value="aberto">Aberto</option>
+        <option value="investigando">Investigando</option>
+        <option value="fechado">Fechado</option>
+    </select>
+
+    <select name="classificacao">
+        <option value="homicidio">Homicídio</option>
+        <option value="roubo">Roubo</option>
+        <option value="cyber">Cyber</option>
+        <option value="narcoticos">Narcóticos</option>
+    </select>
+
+    <select name="prioridade">
+        <option value="baixa">Baixa</option>
+        <option value="moderada">Moderada</option>
+        <option value="elevada">Elevada</option>
+    </select>
+
+    <button type="submit">Criar Caso</button>
+</form>
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+
+    <form
+        hx-get="/casos"
+        hx-target="#conteudo"
+        hx-push-url="true"
+        hx-indicator="#loading"
+    >
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+
+            <input 
+                type="text"
+                name="busca"
+                placeholder="🔎 Buscar título..."
+                value="{{ busca }}"
+            >
+
+            <select name="classificacao">
+                <option value="">Tipo</option>
+                <option value="homicidio" {% if classificacao == "homicidio" %}selected{% endif %}>Homicídio</option>
+                <option value="roubo" {% if classificacao == "roubo" %}selected{% endif %}>Roubo</option>
+                <option value="cyber" {% if classificacao == "cyber" %}selected{% endif %}>Cyber</option>
+                <option value="narcoticos" {% if classificacao == "narcoticos" %}selected{% endif %}>Narcóticos</option>
+            </select>
+
+            <select name="status">
+                <option value="">Status</option>
+                <option value="aberto" {% if status == "aberto" %}selected{% endif %}>Aberto</option>
+                <option value="investigando" {% if status == "investigando" %}selected{% endif %}>Investigando</option>
+                <option value="fechado" {% if status == "fechado" %}selected{% endif %}>Fechado</option>
+            </select>
+
+            <select name="prioridade">
+                <option value="">Prioridade</option>
+                <option value="baixa" {% if prioridade == "baixa" %}selected{% endif %}>Baixa</option>
+                <option value="moderada" {% if prioridade == "moderada" %}selected{% endif %}>Moderada</option>
+                <option value="elevada" {% if prioridade == "elevada" %}selected{% endif %}>Elevada</option>
+            </select>
+
+            <div style="display:flex; gap:10px;">
+                <button type="submit">Buscar</button>
+
+                <button 
+                    type="button"
+                    style="background:#334155;"
+                    hx-get="/casos"
+                    hx-target="#conteudo"
+                    hx-push-url="true">
+                    Limpar
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<img id="loading" class="htmx-indicator" src="/static/spinner.svg" style="width: 30px;">
+
+<h2>Casos</h2>
+
+<div id="conteudo">
+    {% include "partials/casos_lista.html" %}
+</div>
+
+<div style="margin-top:20px; display:flex; gap:10px;">
+
+    {% if page > 1 %}
+    <button
+        hx-get="/casos?page={{ page - 1 }}"
+        hx-target="#conteudo"
+        hx-include="closest form"
+        hx-push-url="true">
+        Anterior
+    </button>
+    {% endif %}
+
+    {% if tem_proxima %}
+    <button
+        hx-get="/casos?page={{ page + 1 }}"
+        hx-target="#conteudo"
+        hx-include="closest form"
+        hx-push-url="true">
+        Próximo
+    </button>
+    {% endif %}
+
+</div>
+
+{% endblock %}
