@@ -1,0 +1,38 @@
+<!-- evidencia_item.html -->
+
+<div class="subcard" id="evidencia-{{ evidencia.id }}">
+
+    <div style="display:flex; justify-content:space-between;">
+        <strong>{{ evidencia.descricao }}</strong>
+
+        <span class="badge">
+            {{ evidencia.categoria }}
+        </span>
+    </div>
+
+    <p style="margin:5px 0;">
+        Status: <b>{{ evidencia.status_atual }}</b>
+    </p>
+
+    {% if evidencia.coletado_onde %}
+        <p>📍 {{ evidencia.coletado_onde }}</p>
+    {% endif %}
+
+    <p>🕒 {{ evidencia.coletado_quando.strftime("%d/%m/%Y %H:%M") }}</p>
+
+    <button 
+        hx-get="/evidencias/{{ evidencia.id }}/editar"
+        hx-target="#evidencia-{{ evidencia.id }}"
+        hx-swap="outerHTML">
+        Editar
+    </button>
+
+    <button 
+        hx-delete="/evidencias/{{ evidencia.id }}"
+        hx-target="closest .card"
+        hx-swap="outerHTML"
+        onclick="return confirm('Tem certeza que deseja deletar esta evidência?')">
+        Deletar
+    </button>
+
+</div>

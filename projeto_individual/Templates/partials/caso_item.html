@@ -1,0 +1,56 @@
+<!-- caso_item.html -->
+
+<div class="card {{caso.prioridade}}" id="caso-{{ caso.id }}">
+    
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+        <div>
+            <strong>{{ caso.titulo }}</strong>
+
+                <span class="status {{ caso.status }}">
+                    {{ caso.status }}
+                </span>
+        </div>
+
+        <button 
+            hx-get="/casos/{{ caso.id }}/evidencias"
+            hx-target="#evidencias-{{ caso.id }}"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Evidências
+        </button>
+    </div>
+
+    <p>{{ caso.descricao }}</p>
+
+    <form 
+        hx-put="/casos/{{ caso.id }}"
+        hx-target="#caso-{{ caso.id }}"
+        hx-swap="outerHTML"
+    >
+        <select name="status">
+            <option value="aberto" {% if caso.status == "aberto" %}selected{% endif %}>Aberto</option>
+            <option value="investigando" {% if caso.status == "investigando" %}selected{% endif %}>Investigando</option>
+            <option value="fechado" {% if caso.status == "fechado" %}selected{% endif %}>Fechado</option>
+        </select>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <button 
+        hx-get="/casos/{{ caso.id }}/editar"
+        hx-target="#caso-{{ caso.id }}"
+        hx-swap="outerHTML">
+        Editar
+    </button>
+
+    <button 
+        hx-delete="/casos/{{ caso.id }}"
+        hx-target="#caso-{{ caso.id }}"
+        hx-swap="outerHTML">
+        Deletar
+    </button>
+
+    <div id="evidencias-{{ caso.id }}"></div>
+
+</div>

@@ -1,0 +1,47 @@
+<!-- evidencias_lista.html -->
+
+<div class="card" style="margin-top:10px; border-left:4px solid #22c55e;">
+
+    <h4>Evidências ({{ caso.evidencias|length }})</h4>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+
+        {% for evidencia in caso.evidencias %}
+            {% include "partials/evidencia_item.html" %}
+        {% else %}
+            <p>Nenhuma evidência ainda.</p>
+        {% endfor %}
+
+    </div>
+
+    <hr>
+
+    <form 
+        hx-post="/evidencias"
+        hx-target="closest .card"
+        hx-swap="outerHTML"
+        hx-on="htmx:afterRequest: this.reset()"
+    >
+        <input type="hidden" name="caso_id" value="{{ caso.id }}">
+
+        <input name="descricao" placeholder="Descrição" required>
+
+        <select name="categoria">
+            <option value="digital">Digital</option>
+            <option value="fisica">Física</option>
+            <option value="biologica">Biológica</option>
+            <option value="documental">Documental</option>
+        </select>
+
+        <select name="status_atual">
+            <option value="coletado">Coletado</option>
+            <option value="em_analise">Em análise</option>
+            <option value="armazenado">Armazenado</option>
+        </select>
+
+        <input name="coletado_onde" placeholder="Local (opcional)">
+
+        <button type="submit">Adicionar</button>
+    </form>
+
+</div>

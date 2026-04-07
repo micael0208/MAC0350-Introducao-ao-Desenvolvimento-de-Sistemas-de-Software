@@ -1,0 +1,9 @@
+<!-- casos_lista.html -->
+
+<ul id="lista-casos">
+{% for caso in casos %}
+    {% include "partials/caso_item.html" %}
+{% endfor %}
+</ul>
+
+<span>Página {{ page }}</span>

@@ -1,0 +1,21 @@
+<!-- evidencia_edit.html -->
+
+<div class="subcard" id="evidencia-{{ evidencia.id }}">
+
+    <form
+        hx-put="/evidencias/{{ evidencia.id }}"
+        hx-target="#evidencia-{{ evidencia.id }}"
+        hx-swap="outerHTML"
+    >
+        <input name="descricao" value="{{ evidencia.descricao }}" required>
+
+        <select name="status_atual">
+            <option value="coletado" {% if evidencia.status_atual == "coletado" %}selected{% endif %}>Coletado</option>
+            <option value="em_analise" {% if evidencia.status_atual == "em_analise" %}selected{% endif %}>Em análise</option>
+            <option value="armazenado" {% if evidencia.status_atual == "armazenado" %}selected{% endif %}>Armazenado</option>
+        </select>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+</div>
