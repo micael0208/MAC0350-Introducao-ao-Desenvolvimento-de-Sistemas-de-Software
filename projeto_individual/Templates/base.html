@@ -1,0 +1,125 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Tracker</title>
+
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 20px;
+            border-bottom: 2px solid #f97316;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #f97316;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border: none;
+        }
+
+        input, select {
+            background: #1e293b;
+            color: white;
+        }
+
+        button {
+            background: #f97316;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #f97316;
+            border-radius: 8px;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        .aberto { background: #22c55e; }
+        .investigando { background: #eab308; }
+        .fechado { background: #ef4444; }
+
+        .card select {
+            min-width: 120px;
+        }
+
+        .card input {
+            flex: 1;
+        }
+
+        .alta { border-left: 4px solid red; }
+        .media { border-left: 4px solid yellow; }
+        .baixa { border-left: 4px solid green; }
+
+        .subcard {
+            background: #020617;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #22c55e;
+        }
+
+        .badge {
+            background: #334155;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            background: #020617;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Case Tracker</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
