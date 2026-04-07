@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+        .active {
+            font-weight: bold;
+            color: orange;
+        }
+
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logos{
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .usp-logo{
+            width: 122px;
+            padding-top: 5px;
+            margin-right: 24px;
+            margin-left: 28px;
+        }
+
+        .usp-logo-texto{
+            padding-top: 8px;
+            width: 260px;
+        }
+
+        .faixas{
+            margin-top: 3px;
+        }
+
+        .faixa-laranja{
+            display: block;
+            height: 6px;
+            width: 100%;
+            background-color: #fcb421;
+        }
+
+        .faixa-azul-claro{
+            display: block;
+            height: 6px;
+            width: 100%;
+            background-color: #64c4d2;
+        }
+
+        .faixa-azul-escuro{
+            display: block;
+            height: 12px;
+            width: 100%;
+            background-color: #1094ab;
+        }
+
+        .conteudo{
+            gap: 20px;
+            padding: 10px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        .caixa-navegacao{
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .navegacao-publico{
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-start;
+            align-items:flex-start;
+            width: 100%;
+            max-width: 170px;
+            height: 152px;
+            list-style-type: none;
+            border: 1px solid #cccccc;
+        }
+
+        .navegacao-restrito{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:flex-start;
+            width: 100%;
+            max-width: 170px;
+            height: 102px;
+            list-style-type: none;
+            border: 1px solid #cccccc;
+        }
+
+        .menu-header{
+            background-color: #cccccc;
+        }
+
+        .area-login{
+            flex: 1;
+            min-width: 250px;
+            width: 100%;
+        }
+
+        .login-header{
+            font-size: 15px;
+            margin-bottom: 0px;
+        }
+
+        .linha-horizontal{
+            width: 100%;
+            margin-bottom: 0px;
+        }
+
+        .login{
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+
+        .usuario{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            min-height: 40px;
+        }
+
+        .senha{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0px;
+            width: 100%;
+            max-width: 400px;
+            min-height: 40px;
+        }
+
+        .usuario-texto,
+        .senha-texto{
+            display: inline-block;
+            width: 67px;
+
+        }
+
+        .form-usuario,
+        .form-senha{
+            display: inline-block;
+            flex: 1;
+        }
+
+        .usuario-input,
+        .senha-input{
+            width: 100%;
+            display: inline-block;
+        }
+
+        .botao-entrar{
+            width: 100%;
+            max-width: 200px;
+            align-self: center;
+        }
+
+        .fundo{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-adicional{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            justify-self: center;
+            align-self: center;
+        }
+
+        .empresa{
+            margin-top: 0px;
+            justify-self: center;
+            align-self: center;
+        }
+
+        @media (max-width: 768px) {
+            .navegacao-publico,
+            .navegacao-restrito{
+                max-width: 100%;
+            }
+
+            .conteudo{
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .area-login{
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .login{
+                margin-left: 0;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .usuario{
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .senha{
+                margin-top: 10px;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .usuario-texto,
+            .senha-texto{
+                display: block;
+                margin: 10px 0px 0px 0;
+            }
+
+            .form-usuario,
+            .form-senha{
+                width: 30%;
+            }
+
+            .botao-entrar{
+                margin-top: 5px;
+                width: 30%;
+                align-self: auto;
+            }
+
+            .fundo{
+                width: 50%;
+                justify-self: auto;
+                align-self: auto;
+            }
+        }
+
+
+        .body-professor{
+            background-color: #fcb421;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        main{
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .alan-pic{
+            width: 50px; 
+            height: 50px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 12px;
+            border-color: black;
+            border-width: 2px;
+            border-style: solid;
+        }
+
+        .titulo{
+            font-family: "Garamond", "Baskerville", serif;
+            flex-grow: 1;
+            white-space: normal;
+        }
+
+        .nome{
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .nome:hover{
+            color: #1094ab;
+        }
+
+        .subtitulo{
+            font-size: 12px;
+        }
+
+        .eric-pic{
+            width: 50px; 
+            height: 50px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 12px;
+            border-color: black;
+            border-width: 2px;
+            border-style: solid;
+        }
+
+        hr{
+            width: 100%;
+            height: 2px;
+            background-color: #64c4d2;
+        }
+
+        .card {
+            background: white;
+            padding-top: 2px;
+            padding-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            box-shadow: 5px 5px 2px #1094ab;
+        }
+
+        .card:hover{
+            transform: rotate(-0.3deg);
+        }
+
+        .card-course {
+            cursor: crosshair;
+            background-color: white;
+            padding-top: 2px;
+            padding-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            box-shadow: 5px 5px 2px #1094ab;
+        }
+
+        .card-course ul{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .card-course:hover{
+            color: #64c4d2;
+        }
+
+        .card-title{
+            font-size: 15px;
+            padding-left: 20px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+
+        .card-subtitle{
+            padding-top: 0px;
+            padding-left: 20px;
+            height: 2px;
+        }
+
+        .lista{
+            margin-top: 30px;
+        }
+
+        a{
+            color: #1094ab;
+        }
+
+        footer{
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2px;
+            flex-wrap: nowrap;
+            width: 100%;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+
+        .sugestoes{
+            white-space: nowrap;
+        }
+
+        .email{
+            display: inline;
+        }
+
+        @media (min-width: 768px){
+
+            .header-professor{
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .alan-pic{
+                width: 100px;
+                height: 100px;
+            }
+
+            .eric-pic{
+                width: 100px;
+                height: 100px;
+            }
+
+            .nome{
+                font-size: 32px;
+            }
+
+            .subtitulo{
+                font-size: 16px;
+            }
+
+            .card{
+                font-size: 14px;
+            }
+
+        }    
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <button 
+        hx-get="/curtidas"
+        hx-target="#conteudo"
+        hx-swap="innerHTML"
+        onclick="setActive(this)">
+        Curtidas
+    </button>
+
+    <button 
+        hx-get="/jupiter"
+        hx-target="#conteudo"
+        hx-swap="innerHTML"
+        onclick="setActive(this)">
+        Jupiter
+    </button>
+
+    <button 
+        hx-get="/professor"
+        hx-target="#conteudo"
+        hx-swap="innerHTML"
+        onclick="setActive(this)">
+        Professor
+    </button>
+</nav>
+
+<hr>
+
+<div id="conteudo">
+    <!-- conteúdo carrega aqui -->
+</div>
+
+<script>
+function setActive(el){
+    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+    el.classList.add("active");
+}
+
+document.addEventListener("keydown", function(e){
+    if (e.shiftKey && e.ctrlKey && e.altKey && e.key.toLowerCase() === "p") {
+        document.querySelector('[hx-get="/professor"]').click();
+    }
+});
+</script>
+
+</body>
+</html>
