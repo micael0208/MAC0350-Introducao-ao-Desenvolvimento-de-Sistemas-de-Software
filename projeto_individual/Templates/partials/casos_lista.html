@@ -7,3 +7,25 @@
 </ul>
 
 <span>Página {{ page }}</span>
+
+<div style="margin-top:20px; display:flex; gap:10px;">
+    {% if page > 1 %}
+    <button
+        hx-get="/casos?page={{ page - 1 }}"
+        hx-target="#conteudo"
+        hx-include="#filtros"
+        hx-push-url="true">
+        Anterior
+    </button>
+    {% endif %}
+
+    {% if tem_proxima %}
+    <button
+        hx-get="/casos?page={{ page + 1 }}"
+        hx-target="#conteudo"
+        hx-include="#filtros"
+        hx-push-url="true">
+        Próximo
+    </button>
+    {% endif %}
+</div>
