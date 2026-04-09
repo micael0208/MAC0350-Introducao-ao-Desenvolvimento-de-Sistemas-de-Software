@@ -42,6 +42,7 @@
 <div class="card" style="margin-bottom:20px;">
 
     <form
+        id="filtros"
         hx-get="/casos"
         hx-target="#conteudo"
         hx-push-url="true"
@@ -104,30 +105,6 @@
 
 <div id="conteudo">
     {% include "partials/casos_lista.html" %}
-</div>
-
-<div style="margin-top:20px; display:flex; gap:10px;">
-
-    {% if page > 1 %}
-    <button
-        hx-get="/casos?page={{ page - 1 }}"
-        hx-target="#conteudo"
-        hx-include="closest form"
-        hx-push-url="true">
-        Anterior
-    </button>
-    {% endif %}
-
-    {% if tem_proxima %}
-    <button
-        hx-get="/casos?page={{ page + 1 }}"
-        hx-target="#conteudo"
-        hx-include="closest form"
-        hx-push-url="true">
-        Próximo
-    </button>
-    {% endif %}
-
 </div>
 
 {% endblock %}
