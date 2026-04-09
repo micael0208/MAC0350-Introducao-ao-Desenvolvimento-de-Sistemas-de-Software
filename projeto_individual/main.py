@@ -29,7 +29,7 @@ def create_db_and_tables():
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse(request, "index.html", {})
+    return templates.TemplateResponse(request, "casos.html", {})
 
 @app.post("/casos", response_class=HTMLResponse)
 def criar_caso(
@@ -71,7 +71,7 @@ def deletar_caso(caso_id: int):
     return ""
 
 @app.put("/casos/{caso_id}")
-def atualizar_status(caso_id: int, status: str = Form(...)):
+def atualizar_status(request: Request, caso_id: int, status: str = Form(...)):
     with Session(engine) as session:
         caso = session.get(Caso, caso_id)
         if not caso:
@@ -82,6 +82,7 @@ def atualizar_status(caso_id: int, status: str = Form(...)):
         session.refresh(caso)
 
     return templates.TemplateResponse(
+        request,
         "partials/caso_item.html",
         {"caso": caso}
     )
@@ -162,7 +163,7 @@ def listar_casos(
         if prioridade:
             query = query.where(Caso.prioridade == prioridade)
 
-        total = session.exec(query).all()
+        total = len(session.exec(query).all())
 
         casos = session.exec(
             query.offset(offset).limit(limite)
@@ -175,7 +176,7 @@ def listar_casos(
         "status": status,
         "prioridade": prioridade,
         "page": page,
-        "tem_proxima": len(total) > offset + limite
+        "tem_proxima": total > offset + limite
     }
 
     if request.headers.get("HX-Request"):
@@ -274,6 +275,17 @@ def deletar_evidencia(request: Request, evidencia_id: int):
     return templates.TemplateResponse(
         request,
         "partials/evidencias_lista.html",
+        {"caso": caso}
+    )
+
+@app.get("/casos/{caso_id}")
+def get_caso(request: Request, caso_id: int):
+    with Session(engine) as session:
+        caso = session.get(Caso, caso_id)
+
+    return templates.TemplateResponse(
+        request,
+        "partials/caso_item.html",
         {"caso": caso}
     )
 
