@@ -37,7 +37,7 @@
         <button type="submit">Atualizar</button>
     </form>
 
-    <button 
+    <button
         hx-get="/casos/{{ caso.id }}/editar"
         hx-target="#caso-{{ caso.id }}"
         hx-swap="outerHTML">
